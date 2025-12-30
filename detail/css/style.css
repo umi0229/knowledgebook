@@ -1,0 +1,266 @@
+:root {
+    /* UI顏色 */
+    --color-beige-bg: #FDF9F3;     /* 主背景色 */
+    --color-beige-card: #DABEA7;   /* 卡片背景 */
+    --color-text-dark: #4F4A45;    /* 主文字色 */
+    --color-deep-tone: #876D5A;    /* 輔助/深色調 */
+    --color-accent-cool: #A9B2BB;  /* 強調色 (清冷灰藍) */
+
+    /* 基礎排版 */
+    --padding-base: 20px;
+    --border-radius-base: 8px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-beige-bg);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--padding-base);
+}
+
+/* 導覽列 */
+.site-header {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+.site-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-text-dark);
+}
+
+.site-nav {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: var(--color-deep-tone);
+    margin: 0 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.site-nav a:hover {
+    color: var(--color-accent-cool);
+    border-bottom: 2px solid var(--color-accent-cool);
+}
+
+/* 篩選按鈕 */
+.filter-section {
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--color-deep-tone);
+}
+
+.tag-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    overflow-x: auto; 
+    padding-bottom: 10px;
+}
+
+.filter-tag {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 2px solid var(--color-beige-card);
+    background-color: transparent;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.filter-tag:hover, .filter-tag.active {
+    background-color: var(--color-beige-card);
+}
+
+.filter-tag.active {
+    background-color: var(--color-accent-cool);
+    color: white;
+    border-color: var(--color-accent-cool);
+}
+
+/* 搜尋欄 */
+.search-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.search-controls input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--color-deep-tone);
+    border-radius: var(--border-radius-base);
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius-base);
+    background-color: var(--color-accent-cool);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* 卡片佈局 */
+.knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+    padding: 30px 0;
+}
+
+/* 超連結 */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.knowledge-card {
+    background-color: var(--color-beige-card);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.4s;
+    height: 100%; /* 確保所有的卡片等高 */
+}
+
+.card-link:hover .knowledge-card {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(169, 178, 187, 0.4);
+}
+
+/* 讓圖片不變形 */
+.card-image {
+    width: 100%;
+    height: 180px;      /* 統一高度 */
+    overflow: hidden;
+    background-color: var(--color-deep-tone);
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* 填充且不變形 */
+    object-position: center;
+    display: block;
+}
+
+.card-body {
+    padding: var(--padding-base);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--color-deep-tone);
+}
+
+.card-snippet {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp2: /* 限制最多顯示兩行 */
+    -webkit-box-orient vertical;
+    overflow: hidden;
+}
+
+.card-tag {
+    font-size: 0.8rem;
+    color: var(--color-accent-cool);
+    font-weight: 600;
+}
+
+/* JS篩選隱藏效果 */
+.knowledge-card.hidden-card {
+    display: none !important; 
+}
+
+/* 單頁內容設定 */
+.article-body {
+    max-width: 700px; 
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.detail-header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-accent-cool);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    max-width: 100%;
+    margin: 0 auto 30px;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: var(--border-radius-base);
+}
+
+.article-title {
+    font-size: 2.2rem;
+    margin: 10px auto;
+    max-width: 700px;
+}
+
+.key-fact {
+    border-left: 5px solid var(--color-accent-cool);
+    background-color: rgba(218, 190, 167, 0.2);
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: var(--border-radius-base);
+    font-style: italic;
+}
+
+/* 頁尾與 RWD */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-deep-tone);
+    color: white;
+    margin-top: 40px;
+}
+
+@media (max-width: 1200px) {
+    .knowledge-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .knowledge-grid { grid-template-columns: repeat(2, 1fr); }
+    .article-title { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+    .knowledge-grid { grid-template-columns: 1fr; }
+}
